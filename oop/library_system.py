@@ -28,9 +28,12 @@ class Library:
     def list_books(self):
         """Lists the details of all books in the library."""
         for book in self.books:
+            # The isinstance order is important. Check for derived classes first.
             if isinstance(book, EBook):
-                print(f"EBook: {book.title} by {book.author}, File Size: {book.file_size}KB")
+                # The corrected line below no longer adds "KB"
+                print(f"EBook: {book.title} by {book.author}, File Size: {book.file_size}")
             elif isinstance(book, PrintBook):
                 print(f"PrintBook: {book.title} by {book.author}, Page Count: {book.page_count}")
             else:
+                # This handles the base Book class
                 print(f"Book: {book.title} by {book.author}")
