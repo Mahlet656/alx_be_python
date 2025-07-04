@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+"""
+A simple command-line shopping list manager.
+"""
+
 def display_menu():
-    """Displays the main menu for the shopping list manager."""
-    print("\nShopping List Manager")
+    """Prints the main menu options to the console."""
+    print("Shopping List Manager")
     print("1. Add Item")
     print("2. Remove Item")
     print("3. View List")
@@ -14,32 +19,29 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == '1':
-            # Prompt for and add an item
             item = input("Enter the item to add: ")
             shopping_list.append(item)
-            print(f"'{item}' has been added to the list.")
+            print(f"'{item}' added to the list.")
         elif choice == '2':
-            # Prompt for and remove an item
             item = input("Enter the item to remove: ")
-            try:
+            if item in shopping_list:
                 shopping_list.remove(item)
-                print(f"'{item}' has been removed from the list.")
-            except ValueError:
-                print(f"Item '{item}' not found in the list.")
-        elif choice == '3':
-            # Display the shopping list
-            print("\n--- Your Shopping List ---")
-            if not shopping_list:
-                print("The list is empty.")
+                print(f"'{item}' removed from the list.")
             else:
-                for i, item_in_list in enumerate(shopping_list, 1):
-                    print(f"{i}. {item_in_list}")
-            print("------------------------")
+                print(f"Item not found.")
+        elif choice == '3':
+            print("\n--- Shopping List ---")
+            if not shopping_list:
+                print("The shopping list is empty.")
+            else:
+                for idx, item_in_list in enumerate(shopping_list, 1):
+                    print(f"{idx}. {item_in_list}")
+            print("---------------------")
         elif choice == '4':
             print("Goodbye!")
             break
         else:
-            print("Invalid choice. Please enter a number from 1 to 4.")
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
